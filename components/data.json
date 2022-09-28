@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Sabbir Hossen",
+        "mobile": "0214856",
+        "salary": "890",
+        "status": "active"
+    },
+    {
+        "name": "Imaran Hossen",
+        "mobile": "0154789",
+        "salary": "500",
+        "status": "active"
+    },
+    {
+        "name": "Ismail Hossen",
+        "mobile": "0214856",
+        "salary": "1000",
+        "status": "inactive"
+    }
+]
