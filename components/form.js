@@ -1,20 +1,29 @@
+import { useEffect } from "react";
 
 export default function Form() {
 
-
+    // ============ handle submit form / add user
     const handleSubmit = async event => {
         event.preventDefault();
-        const name = event.target.name.value;
-        const mobile = event.target.mobile.value;
-        const salary = event.target.salary.value;
-        const radio = event.target.radio.value;
-
+        const neweployee = {
+            name: event.target.name.value,
+            mobile: event.target.mobile.value,
+            salary: event.target.salary.value,
+            status: event.target.radio.value
+        }
+        const response = await fetch('http://localhost:3000/api/users', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(neweployee),
+        });
         const inputs = document.querySelectorAll('#name,#mobile,#salary');
         inputs.forEach(input => {
             input.value = '';
         });
-        console.log(name, mobile, salary, radio)
     }
+
     return (
         <div>
             <div className='text-center text-sm'>
@@ -43,12 +52,8 @@ export default function Form() {
                                     <label htmlFor="salary">Salary</label>
                                     <input type="number" required name="salary" id="salary" placeholder='Name' className='py-3 px-2 rounded-md text-sm ' />
                                 </div>
-
-                                {/* <div className="flex gap-3 items-center">
-                                    <label htmlFor="mobile">Mobile</label>
-                                    <input type="text" name="name" id="mobile" placeholder='Mobile' className='py-3 px-2 rounded-md text-sm' />
-                                </div> */}
                             </div>
+
                             {/* form row 3 */}
                             <div className="flex justify-center gap-5 mb-2">
                                 <div className="flex justify-center items-center gap-3">
