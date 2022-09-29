@@ -1,5 +1,5 @@
 export default async function AllEmployee() {
-    const response = await fetch('http://localhost:3000/api/users');
+    const response = await fetch('https://vocal-cat-872b6e.netlify.app/api/users');
     const json = response.json();
     return json;
 }
