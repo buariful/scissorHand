@@ -5,14 +5,14 @@ import Image from "next/image";
 import deleteUser from "../controller/deleteUser";
 import { useQuery } from "react-query";
 import AllEmployee from "../controller/allEmployee";
+import { useState } from "react";
+import UpdateUser from "../updateUser/updateUser";
 
 export default function Employee() {
-    // const [isloading, setLoading] = useState(false);
+    const [visible, setVisible] = useState()
+
 
     const { isloading, isError, data, error } = useQuery('employee', AllEmployee)
-
-
-
     if (isloading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -21,12 +21,53 @@ export default function Employee() {
         )
     }
 
+    // table data
+    function TableData({ data }) {
+        const { name, mobile, salary, status, _id } = data;
+
+        const modalToggle = (param) => {
+            return (
+                <div className="w-full min-h-screen bg-red-800 fixed flex justify-center items-center">
+                    sdfsfdsfsdf
+                </div>
+            )
+        }
+
+        return (
+
+
+            <tr className="hover:bg-[#d0a87ed2]">
+                <td><p className="inline-block py-3 text-sm">{name}</p></td>
+                <td><p className="inline-block py-3 text-sm">{mobile}</p></td>
+                <td><p className="inline-block py-3 text-sm">$ {salary}</p></td>
+                <td><p className="inline-block text-white lg:text-sm text-xs">
+                    {status == "inactive" ?
+                        <span className="bg-red-600 p-1 lg:px-2 rounded-full">{status}</span> :
+                        <span className="bg-green-600 p-1 lg:px-2 rounded-full">{status}</span>
+                    }
+                </p></td>
+                <td>
+                    <div className="flex gap-5 justify-center">
+                        <button><BiEdit className="text-green-600 lg:text-2xl text-sm cursor-pointer" onClick={() => {
+                            setVisible(data)
+                        }}></BiEdit></button>
+                        <button><BiTrashAlt className="text-red-600 lg:text-2xl text-sm cursor-pointer" onClick={() => deleteUser(_id)}></BiTrashAlt></button>
+                    </div>
+                </td>
+
+
+            </tr>
+
+        )
+    }
+
 
 
     return (
-        <div className="bg-[#e6e6e6] min-h-screen">
+        <div>
             <h1 className="text-4xl font-semibold text-[#333333] pt-4 mb-10">Employee list</h1>
-
+            {/* ========== modal ===== */}
+            {visible ? <UpdateUser data={visible} state={[visible, setVisible]}> </UpdateUser> : <></>}
             {/* ==========add user========== */}
             <Form></Form>
 
@@ -49,33 +90,9 @@ export default function Employee() {
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div >
     )
 }
 
-function TableData({ data }) {
-    const { name, mobile, salary, status, _id } = data;
-    return (
 
-        <tr className="hover:bg-[#d0a87ed2]">
-            <td><p className="inline-block py-3 text-sm">{name}</p></td>
-            <td><p className="inline-block py-3 text-sm">{mobile}</p></td>
-            <td><p className="inline-block py-3 text-sm">$ {salary}</p></td>
-            <td><p className="inline-block text-white lg:text-sm text-xs">
-                {status == "inactive" ?
-                    <span className="bg-red-600 p-1 lg:px-2 rounded-full">{status}</span> :
-                    <span className="bg-green-600 p-1 lg:px-2 rounded-full">{status}</span>
-                }
-            </p></td>
-            <td>
-                <div className="flex gap-5 justify-center">
-                    <button><BiEdit className="text-green-600 lg:text-2xl text-sm cursor-pointer"></BiEdit></button>
-                    <button><BiTrashAlt className="text-red-600 lg:text-2xl text-sm cursor-pointer" onClick={() => deleteUser(_id)}></BiTrashAlt></button>
-                </div>
-            </td>
-
-
-        </tr>
-    )
-}
 
