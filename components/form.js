@@ -11,7 +11,7 @@ export default function Form() {
             salary: event.target.salary.value,
             status: event.target.radio.value
         }
-        const response = await fetch(`https://vocal-cat-872b6e.netlify.app/api/users?id=${_id}`, {
+        const response = await fetch(`https://vocal-cat-872b6e.netlify.app/api/users`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
