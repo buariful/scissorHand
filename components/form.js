@@ -50,7 +50,7 @@ export default function Form() {
                             <div className="flex justify-between items-center mb-4 flex-col lg:flex-row">
                                 <div className="flex gap-3 items-center mb-2 lg:mb-0">
                                     <label htmlFor="salary">Salary</label>
-                                    <input type="number" required name="salary" id="salary" placeholder='Name' className='py-3 px-2 rounded-md text-sm ' />
+                                    <input type="number" required name="salary" id="salary" placeholder='Salary' className='py-3 px-2 rounded-md text-sm ' />
                                 </div>
                             </div>
 
